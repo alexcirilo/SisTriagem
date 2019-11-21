@@ -3,6 +3,7 @@ package model.bean;
 public class SisEndereco {
 
     private int id;
+    private String cep;
     private String logradouro;
     private String numero;
     private String bairro;
@@ -16,6 +17,13 @@ public class SisEndereco {
 
     public void setId(int id) {
         this.id = id;
+    }
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
     }
 
     public String getLogradouro() {

@@ -1,13 +1,13 @@
 package model.bean;
 
-public class SisPaciente {
+public class SisPaciente extends SisPessoa{
 
     private int id;
     private String curso;
     private String motivoTriagem;
     private String capital;
     private String vinculoParente;
-    private SisPessoa pessoa_id;
+    //private SisPessoa pessoa_id;
     private SisTipoConsulta consulta_id;
 
     public int getId() {
@@ -50,7 +50,7 @@ public class SisPaciente {
         this.vinculoParente = vinculoParente;
     }
 
-    public SisPessoa getPessoa_id() {
+    /*public SisPessoa getPessoa_id() {
         return pessoa_id;
     }
 
@@ -60,7 +60,7 @@ public class SisPaciente {
 
     public SisTipoConsulta getConsulta_id() {
         return consulta_id;
-    }
+    }*/
 
     public void setConsulta_id(SisTipoConsulta consulta_id) {
         this.consulta_id = consulta_id;

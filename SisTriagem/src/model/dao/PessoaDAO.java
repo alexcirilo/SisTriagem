@@ -1,7 +1,9 @@
 package model.dao;
 
-import Connection.ConnectionFactory;
+
+import connection.ConnectionFactory;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import model.bean.SisContato;
@@ -10,43 +12,60 @@ import model.bean.SisPessoa;
 
 public class PessoaDAO {
 
-    private Connection con = null;
+    private Connection connection;
 
     public PessoaDAO() {
-        con = ConnectionFactory.getConnection();
+        this.connection = new ConnectionFactory().getConnection();
     }
 
     public boolean save(SisEndereco endereco, SisContato contato, SisPessoa pessoa) throws SQLException {
         
-        String sql = "INSERT INTO sis_endereco VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO sis_endereco VALUES (?,?,?,?,?,?,?)";
+        String sql2= "insert  INTO sis_contato VALUES(?,?,?,?) ";
+        String sql3= " insert into sis_pessoa values(?,?,?,?,?,?) ";
         PreparedStatement stmt = null ;
         try {
-            stmt = con.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql);
+            stmt = connection.prepareStatement(sql2);
+            stmt = connection.prepareStatement(sql3);
+            stmt.setString(1, endereco.getCep());
+            stmt.setString(2, endereco.getLogradouro());
+            stmt.setString(3, endereco.getNumero());
+            stmt.setString(4, endereco.getBairro());
+            stmt.setString(5, endereco.getComplemento());
+            stmt.setString(6, endereco.getEstado());
+            stmt.setString(7, endereco.getPais());
             
-            stmt.setString(1, endereco.getLogradouro());
-            stmt.setString(2, endereco.getNumero());
-            stmt.setString(3, endereco.getBairro());
-            stmt.setString(4, endereco.getComplemento());
-            stmt.setString(5, endereco.getEstado());
-            stmt.setString(6, endereco.getPais());
+            stmt.setString(8, contato.getTipoContato());
+            stmt.setInt(9, contato.getDDD());
+            stmt.setString(10, contato.getNumeroContato());
+            stmt.setBoolean(11, contato.isCtt_principal());
+            stmt.setString(12, pessoa.getNomePessoa());
             
-            stmt.executeUpdate();
+            stmt.setString(13, pessoa.getCpf());
+            stmt.setString(14, pessoa.getSexo());
+            stmt.setDate(15, (java.sql.Date.valueOf(pessoa.getDataNascimento().toString())));
             
-            String sql2 = "INSERT INTO sis_contato VALUES(?,?,?,?)";
-            stmt = con.prepareStatement(sql2);
+            stmt.setInt(16, pessoa.getEndereco_id().getId());
+            stmt.setInt(17, pessoa.getContato_id().getId());
             
-            stmt.setString(7, contato.getTipoContato());
-            stmt.setInt(8, contato.getDDD());
-            stmt.setString(9, contato.getNumeroContato());
-            //if(pessoa)
-            stmt.setBoolean(10, true);
-                    
+            stmt.executeUpdate(sql);
+            stmt.execute(sql2);
+            stmt.executeUpdate(sql3);
+            //stmt.execute(sql);
+            
+            //String sql2 = ;
+            //stmt = connection.prepareStatement(sql2);
+            
+            
+            //stmt.execute(sql3);
+            
             return true;
         } catch (SQLException ex) {
-            System.err.println("NOT ENOUGH SAVE, STRANGER!!"+ex);
-            return false;
+            throw new RuntimeException(ex);
+            //return false;
         }finally{
-            con.close();
+            connection.close();
             stmt.close();
         }
         
