@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  *
  * @author Alex
  */
-public class TelaLogin extends javax.swing.JFrame {
+public class SisTelaLogin extends javax.swing.JFrame {
 
     Connection connection = null;
     PreparedStatement stmt = null;
@@ -48,9 +48,9 @@ public class TelaLogin extends javax.swing.JFrame {
     }
 
     /**
-     * Creates new form TelaLogin
+     * Creates new form SisTelaLogin
      */
-    public TelaLogin() {
+    public SisTelaLogin() {
         initComponents();
         connection = ConnectionFactory.getConnection();
         // a linha abaixo serve de apoio ao status da conexão
@@ -218,13 +218,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -232,7 +232,7 @@ public class TelaLogin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaLogin().setVisible(true);
+                new SisTelaLogin().setVisible(true);
             }
         });
     }
