@@ -16,6 +16,7 @@ public class Testebd {
         SisPessoa pes = new SisPessoa();
         SisEndereco end = new SisEndereco();
         SisContato ctt = new SisContato();
+        PessoaDAO dao = new PessoaDAO();
         
         end.setCep("66650-000");
         end.setLogradouro("a");
@@ -34,10 +35,10 @@ public class Testebd {
         pes.setCpf("017.069.382-17");
         pes.setSexo("Masc");
         pes.setDataNascimento(new Date(10,07,1993));
+        pes.setEndereco_id(end.getId());
+        pes.setContato_id(ctt.getId());
         
-        PessoaDAO dao = new PessoaDAO();
-        
-        dao.save(end, ctt, pes);
+        dao.save(end, ctt,pes);
         
     }
 }

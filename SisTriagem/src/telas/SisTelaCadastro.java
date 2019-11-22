@@ -18,14 +18,14 @@ import java.util.logging.Logger;
  *
  * @author Alex
  */
-public class SisCadastro extends javax.swing.JFrame {
+public class SisTelaCadastro extends javax.swing.JFrame {
     
     Connection con = ConnectionFactory.getConnection();
     
     /**
      * Creates new form TelaCadastro
      */
-    public SisCadastro() {
+    public SisTelaCadastro() {
         initComponents();
     }
 
@@ -41,8 +41,8 @@ public class SisCadastro extends javax.swing.JFrame {
 
         lbNome = new javax.swing.JTextField();
         lbTelefone = new javax.swing.JTextField();
-        lbRG = new javax.swing.JTextField();
         lbCPF = new javax.swing.JTextField();
+        lbEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,6 +51,7 @@ public class SisCadastro extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,15 +65,15 @@ public class SisCadastro extends javax.swing.JFrame {
             }
         });
 
-        lbRG.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lbRGActionPerformed(evt);
-            }
-        });
-
         lbCPF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lbCPFActionPerformed(evt);
+            }
+        });
+
+        lbEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lbEmailActionPerformed(evt);
             }
         });
 
@@ -80,9 +81,9 @@ public class SisCadastro extends javax.swing.JFrame {
 
         jLabel2.setText("Telefone:");
 
-        jLabel3.setText("RG:");
+        jLabel3.setText("CPF");
 
-        jLabel4.setText("CPF:");
+        jLabel4.setText("E-mail");
 
         jButton1.setText("Gravar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,11 +118,11 @@ public class SisCadastro extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addGap(43, 43, 43)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbRG, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbNome, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,17 +137,17 @@ public class SisCadastro extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,32 +161,26 @@ public class SisCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_lbTelefoneActionPerformed
 
-    private void lbRGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbRGActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lbRGActionPerformed
-
     private void lbCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_lbCPFActionPerformed
+
+    private void lbEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lbEmailActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
         
-         String sql = "insert into cliente values(?,?,?,?)";
+         String sql = "INSERT INTO contato(nome,telefone,cpf,email) values(?,?,?,?)";
         PreparedStatement stmt;
-        try {
-            stmt = con.prepareStatement(sql);
-        } catch (SQLException ex) {
-            Logger.getLogger(SisCadastro.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                
          try {
             stmt = con.prepareStatement(sql);
             stmt.setString(1, lbNome.getText());
             stmt.setString(2, lbTelefone.getText());
-            stmt.setString(3, lbRG.getText());
-            stmt.setString(4, lbCPF.getText());
+            stmt.setString(3, lbCPF.getText());
+            stmt.setString(4, lbEmail.getText());
             
             stmt.execute();
             stmt.close();
@@ -222,21 +217,24 @@ public class SisCadastro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SisCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SisCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SisCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SisCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SisTelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SisCadastro().setVisible(true);
+                new SisTelaCadastro().setVisible(true);
             }
         });
     }
@@ -249,8 +247,8 @@ public class SisCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField lbCPF;
+    private javax.swing.JTextField lbEmail;
     private javax.swing.JTextField lbNome;
-    private javax.swing.JTextField lbRG;
     private javax.swing.JTextField lbTelefone;
     // End of variables declaration//GEN-END:variables
 }

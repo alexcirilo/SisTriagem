@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * @author Alex
  */
 public  class ConnectionFactory {
-    public static final String url = "jdbc:mysql://127.0.0.1:4306/sistriagem";
+    public static final String url = "jdbc:mysql://127.0.0.1:4306/sisTriagem";
     public static final String user = "root";
     public static final String password = "qwe123";
     

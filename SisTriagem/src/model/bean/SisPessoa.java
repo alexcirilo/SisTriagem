@@ -9,14 +9,14 @@ public class SisPessoa {
     private String cpf;
     private String sexo;
     private Date dataNascimento;
-    private SisEndereco endereco_id;
-    private SisContato contato_id;
+    private int endereco_id;
+    private int contato_id;
 
     public SisPessoa() {
         
     }
 
-    public SisPessoa(int id, String nomePessoa, String cpf, String sexo, Date dataNascimento, SisEndereco endereco_id, SisContato contato_id) {
+    public SisPessoa(int id, String nomePessoa, String cpf, String sexo, Date dataNascimento, int endereco_id, int contato_id) {
         this.id = id;
         this.nomePessoa = nomePessoa;
         this.cpf = cpf;
@@ -66,19 +66,19 @@ public class SisPessoa {
         this.dataNascimento = dataNascimento;
     }
 
-    public SisEndereco getEndereco_id() {
+    public int getEndereco_id() {
         return endereco_id;
     }
 
-    public void setEndereco_id(SisEndereco endereco_id) {
+    public void setEndereco_id(int endereco_id) {
         this.endereco_id = endereco_id;
     }
 
-    public SisContato getContato_id() {
+    public int getContato_id() {
         return contato_id;
     }
 
-    public void setContato_id(SisContato contato_id) {
+    public void setContato_id(int contato_id) {
         this.contato_id = contato_id;
     }
 }
