@@ -1,4 +1,4 @@
-package model.teste;
+package model.test;
 
 import java.sql.Date;
 import java.sql.SQLException;
@@ -34,11 +34,12 @@ public class Testebd {
         pes.setNomePessoa("alex");
         pes.setCpf("017.069.382-17");
         pes.setSexo("Masc");
-        pes.setDataNascimento(new Date(10,07,1993));
-        pes.setEndereco_id(end.getId());
-        pes.setContato_id(ctt.getId());
+        pes.setDataNascimento("1993-07-10");
         
-        dao.save(end, ctt,pes);
+        //pes.setEndereco_id();
+        //pes.setContato_id();
+        
+        dao.save(end,ctt,pes);
         
     }
 }

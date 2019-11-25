@@ -3,72 +3,118 @@ package model.dao;
 
 import connection.ConnectionFactory;
 import java.sql.Connection;
-import java.sql.Date;
+//import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPessoa;
 
 public class PessoaDAO {
-
-    private Connection connection;
+    int end_id, ctt_id;
+    private final Connection connection;
+    PreparedStatement stmt;
+    ResultSet rs;
+    
+    SisPessoa pessoa = new SisPessoa();
 
     public PessoaDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+        this.connection = ConnectionFactory.getConnection();
+        
     }
 
     public void save(SisEndereco endereco, SisContato contato, SisPessoa pessoa) throws SQLException {
         
-        String sql = "INSERT INTO sis_endereco(cep, logradouro, numero, bairro, complemento, estado, pais) VALUES (?,?,?,?,?,?)";
-        String sql2= "insert  INTO sis_contato(tipoContato,DDD,numero,principal) VALUES(?,?,?,?) ";
-        String sql3= " insert into sis_pessoa(nomePessoa,cpf,sexo,dataNascimento,endereco_id,contato_id) values(?,?,?,?,?,?) "
-                + "(select (ifnull(id,null)) as endereco_id from sis_endereco) "
-                + "(select (ifnull(id,null)) as contato_id from sis_contato)) ";
-        PreparedStatement stmt = null ;
+        salvarEndereco(endereco);
+        salvarContato(contato);
+        
+        buscarEndereco(end_id);
+        buscarContato(ctt_id);
+        
         try {
-            stmt = connection.prepareStatement(sql);
-            stmt = connection.prepareStatement(sql2);
-            stmt = connection.prepareStatement(sql3);
+            stmt = connection.prepareStatement("insert into sis_pessoa (nomePessoa,CPF,sexo,dataNascimento,endereco_id,contato_id) values(?,?,?,?,?,?)");
             
-            stmt.setString(1, endereco.getCep());
-            stmt.setString(2, endereco.getLogradouro());
-            stmt.setString(3, endereco.getNumero());
-            stmt.setString(4, endereco.getBairro());
-            stmt.setString(5, endereco.getComplemento());
-            stmt.setString(6, endereco.getEstado());
-            stmt.setString(7, endereco.getPais());
+            stmt.setString(1, pessoa.getNomePessoa());
+            stmt.setString(2, pessoa.getCpf());
+            stmt.setString(3, pessoa.getSexo());
+            stmt.setString(4, pessoa.getDataNascimento());
+            stmt.setInt(5, end_id);
+            stmt.setInt(6, ctt_id);
             
-            stmt.setString(8, contato.getTipoContato());
-            stmt.setInt(9, contato.getDDD());
-            stmt.setString(10, contato.getNumeroContato());
-            stmt.setBoolean(11, contato.isCtt_principal());
+            stmt.executeUpdate();
             
-            stmt.setString(12, pessoa.getNomePessoa());
-            stmt.setString(13, pessoa.getCpf());
-            stmt.setString(14, pessoa.getSexo());
-            stmt.setDate(15, (java.sql.Date.valueOf(pessoa.getDataNascimento().toString())));
-            stmt.setInt(16, pessoa.getEndereco_id());
-            stmt.setInt(17, pessoa.getContato_id());
-            
-            stmt.execute(sql);
-            stmt.execute(sql2);
-            stmt.execute(sql3);
-            //stmt.execute();
-            
-            //String sql2 = ;
-            //stmt = connection.prepareStatement(sql2);
-            
-            
-            //stmt.execute(sql3);
-            
-            //return true;
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-            //return false;
-        }finally{
-            connection.close();
-            stmt.close();
         }
+    }
+    
+    public void salvarEndereco(SisEndereco end){
+        try {
+             stmt = connection.prepareStatement("insert into sis_endereco (cep,logradouro,numero,bairro,complemento,estado,pais)"
+                    + "values(?,?,?,?,?,?,?) ");
+            stmt.setString(1, end.getCep());
+            stmt.setString(2, end.getLogradouro());
+            stmt.setString(3, end.getNumero());
+            stmt.setString(4, end.getBairro());
+            stmt.setString(5, end.getComplemento());
+            stmt.setString(6,end.getEstado());
+            stmt.setString(7, end.getPais());
+            
+            stmt.executeUpdate();
+            //stmt.close();
+        } catch (SQLException ex) {
+            throw  new RuntimeException(ex);
+        }
+    }
+    
+    public int buscarEndereco(int end){
+        try {
+            
+            connection.prepareStatement("Select * from sis_endereco order by id desc limit 1 ");
+            
+            //rs.first();
+            //end_id = rs.getInt("id");
+            stmt.execute();
+            //end_id = rs.getInt("id");
+            
+             
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return end_id;
+    }
+    
+    public void salvarContato (SisContato ctt){
+        try {
+            stmt = connection.prepareStatement("Insert into sis_contato(tipoContato,DDD,numero,principal) values (?,?,?,?)");
+            stmt.setString(1, ctt.getTipoContato());
+            stmt.setInt(2, ctt.getDDD());
+            stmt.setString(3, ctt.getNumeroContato());
+            stmt.setBoolean(4, true);
+            
+            stmt.execute();
+            //stmt.close();
+        } catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    public void buscarContato(int ctt){
+        try {
+            connection.prepareStatement("Select last_insert_id() from sis_contato ordr by id desc limit 1");
+            
+            //rs.first();
+            
+                //ctt_id = rs.getInt("id");
+                stmt.execute();
+                
+            //}
+        } catch (SQLException ex) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

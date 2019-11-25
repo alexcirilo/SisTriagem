@@ -6,7 +6,7 @@
 package model.generics;
 
 import java.sql.PreparedStatement;
-import telas.SisTelaCadastro;
+import view.SisTelaCadastro;
 
 
 /**

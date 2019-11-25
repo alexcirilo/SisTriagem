@@ -29,7 +29,7 @@ public class PessoaDAOTest {
         
         PessoaDAO dao = new PessoaDAO();
         
-        //dao.save(end, ctt, pes);
+        dao.save(end, ctt, pes);
         
     }
     
