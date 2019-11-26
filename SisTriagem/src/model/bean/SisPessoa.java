@@ -1,6 +1,5 @@
 package model.bean;
 
-import java.sql.Date;
 
 public class SisPessoa {
 
@@ -9,7 +8,7 @@ public class SisPessoa {
     private String cpf;
     private String sexo;
     private String dataNascimento;
-    private SisEndereco endereco_id;
+    private SisEndereco endereco_id ;
     private SisContato contato_id;
 
     public SisPessoa() {
@@ -67,6 +66,7 @@ public class SisPessoa {
     }
 
     public SisEndereco getEndereco_id() {
+        
         return endereco_id;
     }
 

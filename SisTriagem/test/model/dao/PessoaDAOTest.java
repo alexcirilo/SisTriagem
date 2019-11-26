@@ -28,9 +28,17 @@ public class PessoaDAOTest {
         SisContato ctt = new SisContato();
         
         PessoaDAO dao = new PessoaDAO();
+        end.setId(1);
+        ctt.setId(1);
         
-        dao.save(end, ctt, pes);
+        pes.setNomePessoa("alex");
+        pes.setCpf("017.069.382-17");
+        pes.setSexo("Masc");
+        pes.setDataNascimento("1993-07-10");
+        pes.setEndereco_id(end);
+        pes.setContato_id(ctt);
         
+       
     }
     
 }

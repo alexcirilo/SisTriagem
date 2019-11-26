@@ -1,10 +1,10 @@
 package model.test;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPessoa;
+import model.dao.EnderecoEContatoDAO;
 import model.dao.PessoaDAO;
 
 /**
@@ -17,29 +17,33 @@ public class Testebd {
         SisEndereco end = new SisEndereco();
         SisContato ctt = new SisContato();
         PessoaDAO dao = new PessoaDAO();
+        EnderecoEContatoDAO endcttdao = new EnderecoEContatoDAO();
         
-        end.setCep("66650-000");
-        end.setLogradouro("a");
-        end.setNumero("21");
-        end.setBairro("a");
-        end.setComplemento("a");
-        end.setEstado("a");
-        end.setPais("a");
+        end.setId(2);
+        end.setCep("67013-201");
+        end.setLogradouro("Alameda A");
+        end.setNumero("33");
+        end.setBairro("una");
+        end.setComplemento("Rod. Transcoqueiro, Rua Santo André");
+        end.setEstado("PA");
+        end.setPais("Brasil");
+        endcttdao.salvarEndereco(end);
         
+        ctt.setId(2);
         ctt.setTipoContato("cel");
         ctt.setDDD(91);
-        ctt.setNumeroContato("98267-9307");
+        ctt.setNumeroContato("98048-2264");
         ctt.setCtt_principal(true);
+        endcttdao.salvarContato(ctt);
+
+        pes.setNomePessoa("Yanca Mayra");
+        pes.setCpf("031.354.952.48");
+        pes.setSexo("Fem");
+        pes.setDataNascimento("1996-02-15");
+        pes.setEndereco_id(end);
+        pes.setContato_id(ctt);
         
-        pes.setNomePessoa("alex");
-        pes.setCpf("017.069.382-17");
-        pes.setSexo("Masc");
-        pes.setDataNascimento("1993-07-10");
         
-        //pes.setEndereco_id();
-        //pes.setContato_id();
-        
-        dao.save(end,ctt,pes);
-        
+            dao.save(end,ctt,pes);
     }
 }
