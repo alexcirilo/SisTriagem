@@ -35,8 +35,8 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         jPanelInternalFrame = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabelInternalFrame = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btCadPaciente = new javax.swing.JButton();
+        btCadMedico = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jButtonAgenda = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -84,15 +84,20 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         jPanelInternalFrame.add(jLabelInternalFrame);
         jLabelInternalFrame.setBounds(0, 130, 780, 300);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cadPacientes.png"))); // NOI18N
-        jButton1.setToolTipText("Pacientes");
-        jPanelInternalFrame.add(jButton1);
-        jButton1.setBounds(90, 40, 60, 59);
+        btCadPaciente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cadPacientes.png"))); // NOI18N
+        btCadPaciente.setToolTipText("Pacientes");
+        jPanelInternalFrame.add(btCadPaciente);
+        btCadPaciente.setBounds(90, 40, 60, 59);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CadMedicos.png"))); // NOI18N
-        jButton2.setToolTipText("Médicos");
-        jPanelInternalFrame.add(jButton2);
-        jButton2.setBounds(10, 40, 60, 60);
+        btCadMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CadMedicos.png"))); // NOI18N
+        btCadMedico.setToolTipText("Médicos");
+        btCadMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadMedicoActionPerformed(evt);
+            }
+        });
+        jPanelInternalFrame.add(btCadMedico);
+        btCadMedico.setBounds(10, 40, 60, 60);
 
         jLabel3.setText("Agenda:");
         jPanelInternalFrame.add(jLabel3);
@@ -134,6 +139,11 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         JmenuCadastro.add(CadPaciente);
 
         CadMedico.setText("Médicos");
+        CadMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadMedicoActionPerformed(evt);
+            }
+        });
         JmenuCadastro.add(CadMedico);
 
         CadUsuarios.setText("Usuários");
@@ -222,6 +232,18 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         jInternalFrameBemVindo.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void CadMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadMedicoActionPerformed
+        // TODO add your handling code here:
+        SisTelaCadMedico tela = new SisTelaCadMedico();
+        tela.setVisible(true);
+    }//GEN-LAST:event_CadMedicoActionPerformed
+
+    private void btCadMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadMedicoActionPerformed
+        // TODO add your handling code here:
+        SisTelaCadMedico tela = new SisTelaCadMedico();
+        tela.setVisible(true);
+    }//GEN-LAST:event_btCadMedicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,8 +285,8 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem CadTriagem;
     private javax.swing.JMenuItem CadUsuarios;
     private javax.swing.JMenu JmenuCadastro;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btCadMedico;
+    private javax.swing.JButton btCadPaciente;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAgenda;
     private javax.swing.JDesktopPane jDesktopPane1;

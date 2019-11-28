@@ -5,6 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 
@@ -55,9 +58,15 @@ public class EnderecoEContatoDAO {
         return true;
     }
     
-    public boolean deletarEndereco(){
-        return true;
-        
+    public void deletarEndereco(SisEndereco end){
+        PreparedStatement stmt;
+        try {
+            stmt = ConnectionFactory.getConnection().prepareStatement("delete from sis_endereco where id =?");
+            stmt.setInt(1, end.getId());
+            stmt.execute();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir"+ex);
+        }
     }
 }
  

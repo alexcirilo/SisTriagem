@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package telas;
+package view;
 
-import view.SisTelaCadEnderecoeContato;
+import model.bean.SisContato;
+import model.bean.SisEndereco;
 
 /**
  *
@@ -13,6 +14,10 @@ import view.SisTelaCadEnderecoeContato;
  */
 public class SisTelaCadMedico extends javax.swing.JFrame {
 
+    SisEndereco end = new SisEndereco();
+    SisContato ctt = new SisContato();
+    
+    
     /**
      * Creates new form SisTelaCadMedico
      */
@@ -72,8 +77,18 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         btCadEditar.setText("Editar");
 
         btCadCancelar.setText("Cancelar");
+        btCadCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadCancelarActionPerformed(evt);
+            }
+        });
 
         btCadSalvar.setText("Salvar");
+        btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadSalvarActionPerformed(evt);
+            }
+        });
 
         btCadExcluir.setText("Excluir");
 
@@ -225,6 +240,17 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         SisTelaCadEnderecoeContato telaCad = new SisTelaCadEnderecoeContato();
         telaCad.setVisible(true);
     }//GEN-LAST:event_btTelaCadEnderecoContatoActionPerformed
+
+    private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
+        // TODO add your handling code here:
+        end.
+        dispose();
+    }//GEN-LAST:event_btCadCancelarActionPerformed
+
+    private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btCadSalvarActionPerformed
 
     /**
      * @param args the command line arguments
