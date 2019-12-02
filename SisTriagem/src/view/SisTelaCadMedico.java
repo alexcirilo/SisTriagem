@@ -243,7 +243,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
 
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
         // TODO add your handling code here:
-        end.
+        //end.
         dispose();
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
