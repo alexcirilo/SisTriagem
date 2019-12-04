@@ -1,13 +1,18 @@
 package model.bean;
 
-public class SisPaciente extends SisPessoa{
+public class SisPaciente {
 
     private int id;
+    private String nomePaciente;
+    private String cpf;
+    private String sexo;
+    private String dataNascimento;
     private String curso;
     private String motivoTriagem;
     private String capital;
     private String vinculoParente;
-    //private SisPessoa pessoa_id;
+    private SisEndereco endereco_id ;
+    private SisContato contato_id;    
     private SisTipoConsulta consulta_id;
 
     public int getId() {
@@ -16,6 +21,38 @@ public class SisPaciente extends SisPessoa{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNomePaciente() {
+        return nomePaciente;
+    }
+
+    public void setNomePaciente(String nomePaciente) {
+        this.nomePaciente = nomePaciente;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
     }
 
     public String getCurso() {
@@ -50,21 +87,29 @@ public class SisPaciente extends SisPessoa{
         this.vinculoParente = vinculoParente;
     }
 
-    /*public SisPessoa getPessoa_id() {
-        return pessoa_id;
+    public SisEndereco getEndereco_id() {
+        return endereco_id;
     }
 
-    public void setPessoa_id(SisPessoa pessoa_id) {
-        this.pessoa_id = pessoa_id;
+    public void setEndereco_id(SisEndereco endereco_id) {
+        this.endereco_id = endereco_id;
+    }
+
+    public SisContato getContato_id() {
+        return contato_id;
+    }
+
+    public void setContato_id(SisContato contato_id) {
+        this.contato_id = contato_id;
     }
 
     public SisTipoConsulta getConsulta_id() {
         return consulta_id;
-    }*/
+    }
 
     public void setConsulta_id(SisTipoConsulta consulta_id) {
         this.consulta_id = consulta_id;
     }
-
+    
     
 }

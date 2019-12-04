@@ -7,15 +7,20 @@ package view;
 
 import model.bean.SisContato;
 import model.bean.SisEndereco;
+import model.bean.SisMedico;
+import model.dao.MedicoDAO;
+
 
 /**
  *
  * @author Alex
  */
 public class SisTelaCadMedico extends javax.swing.JFrame {
-
+    MedicoDAO mod = new MedicoDAO();
+    SisMedico med = new SisMedico();
     SisEndereco end = new SisEndereco();
     SisContato ctt = new SisContato();
+    
     
     
     /**
@@ -51,14 +56,13 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMedico = new javax.swing.JTable();
         txPesquisar = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        btTelaCadEnderecoContato = new javax.swing.JButton();
+        btPesquisarMedico = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel2.setEnabled(false);
 
         jLabel1.setText("Nome:");
 
@@ -66,15 +70,27 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
 
         jLabel4.setText("CRM:");
 
-        jcbEspecialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Cardiologia", "Geral", "Ortopedia", "Pediatria", "Terapia Ocupacional", "Fisioterapia" }));
+        txNomeMed.setEnabled(false);
+
+        jcbEspecialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Terapia Ocupacional", "Psicoterapeuta", "Psicólogo", "Psicanalista" }));
+        jcbEspecialidade.setEnabled(false);
+
+        txCRM.setEnabled(false);
 
         jcbUFCRM.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MS", "MT", "PA", "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RR", "RS", "SC", "SE", "SP", "TO" }));
+        jcbUFCRM.setEnabled(false);
 
         jLabel5.setText("UF:");
 
         btCadNovo.setText("Novo");
+        btCadNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadNovoActionPerformed(evt);
+            }
+        });
 
         btCadEditar.setText("Editar");
+        btCadEditar.setEnabled(false);
 
         btCadCancelar.setText("Cancelar");
         btCadCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -84,6 +100,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         });
 
         btCadSalvar.setText("Salvar");
+        btCadSalvar.setEnabled(false);
         btCadSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadSalvarActionPerformed(evt);
@@ -91,6 +108,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         });
 
         btCadExcluir.setText("Excluir");
+        btCadExcluir.setEnabled(false);
 
         jTableMedico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTableMedico.setModel(new javax.swing.table.DefaultTableModel(
@@ -105,14 +123,10 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableMedico);
 
-        jButton6.setText("Pesquisar");
-
-        jLabel6.setText("Outras Informações: ");
-
-        btTelaCadEnderecoContato.setText("Inserir");
-        btTelaCadEnderecoContato.addActionListener(new java.awt.event.ActionListener() {
+        btPesquisarMedico.setText("Pesquisar");
+        btPesquisarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btTelaCadEnderecoContatoActionPerformed(evt);
+                btPesquisarMedicoActionPerformed(evt);
             }
         });
 
@@ -127,28 +141,21 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGap(19, 19, 19)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(txNomeMed))
-                                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(txPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-                                                    .addComponent(txCRM)))))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                        .addGap(11, 11, 11)
-                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btTelaCadEnderecoContato)))
+                                        .addComponent(txNomeMed))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                                            .addComponent(txCRM))))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton6)
+                                    .addComponent(btPesquisarMedico)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -197,12 +204,8 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(btTelaCadEnderecoContato))
-                .addGap(45, 45, 45)
+                    .addComponent(btPesquisarMedico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
@@ -236,11 +239,6 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btTelaCadEnderecoContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btTelaCadEnderecoContatoActionPerformed
-        SisTelaCadEnderecoeContato telaCad = new SisTelaCadEnderecoeContato();
-        telaCad.setVisible(true);
-    }//GEN-LAST:event_btTelaCadEnderecoContatoActionPerformed
-
     private void btCadCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadCancelarActionPerformed
         // TODO add your handling code here:
         //end.
@@ -248,9 +246,35 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        // TODO add your handling code here:
-        
+        med.setNome(txNomeMed.getText());
+        med.setEspecialidade(jcbEspecialidade.getSelectedItem().toString());
+        med.setCRM(Integer.parseInt(txCRM.getText()));
+        med.setUF_CRM(jcbUFCRM.getSelectedItem().toString());
+        mod.salvarMedico(med);
     }//GEN-LAST:event_btCadSalvarActionPerformed
+
+    private void btPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarMedicoActionPerformed
+        
+        med.setPesquisa(txPesquisar.getText());
+        SisMedico model = mod.buscaMedico(med);
+        
+        txNomeMed.setText(model.getNome());
+        txCRM.setText(String.valueOf(model.getCRM()));
+        jcbEspecialidade.setSelectedItem(model.getEspecialidade());
+        btCadEditar.setEnabled(true);
+        btCadExcluir.setEnabled(true);
+    }//GEN-LAST:event_btPesquisarMedicoActionPerformed
+
+    private void btCadNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNovoActionPerformed
+        btCadSalvar.setEnabled(true);
+        btCadEditar.setEnabled(true);
+        btCadExcluir.setEnabled(true);
+        txNomeMed.setEnabled(true);
+        txCRM.setEnabled(true);
+        jcbEspecialidade.setEnabled(true);
+        jcbUFCRM.setEnabled(true);
+        
+    }//GEN-LAST:event_btCadNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -293,14 +317,12 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     private javax.swing.JButton btCadExcluir;
     private javax.swing.JButton btCadNovo;
     private javax.swing.JButton btCadSalvar;
-    private javax.swing.JButton btTelaCadEnderecoContato;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btPesquisarMedico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableMedico;

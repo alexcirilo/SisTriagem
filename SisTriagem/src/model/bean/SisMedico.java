@@ -3,10 +3,11 @@ package model.bean;
 public class SisMedico {
 
     private int id;
-    private int CRM;
+    private String nome;
     private String especialidade;
-    private char UF_CRM;
-    private SisPessoa pessoa_id;
+    private int CRM;
+    private String UF_CRM;
+    private String pesquisa;
 
     public int getId() {
         return id;
@@ -16,12 +17,12 @@ public class SisMedico {
         this.id = id;
     }
 
-    public int getCRM() {
-        return CRM;
+    public String getNome() {
+        return nome;
     }
 
-    public void setCRM(int CRM) {
-        this.CRM = CRM;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEspecialidade() {
@@ -32,21 +33,30 @@ public class SisMedico {
         this.especialidade = especialidade;
     }
 
-    public char getUF_CRM() {
+    public int getCRM() {
+        return CRM;
+    }
+
+    public void setCRM(int CRM) {
+        this.CRM = CRM;
+    }
+
+    public String getUF_CRM() {
         return UF_CRM;
     }
 
-    public void setUF_CRM(char UF_CRM) {
+    public void setUF_CRM(String UF_CRM) {
         this.UF_CRM = UF_CRM;
     }
 
-    public SisPessoa getPessoa_id() {
-        return pessoa_id;
+    public String getPesquisa() {
+        return pesquisa;
     }
 
-    public void setPessoa_id(SisPessoa pessoa_id) {
-        this.pessoa_id = pessoa_id;
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
     }
-
+    
+    
     
 }

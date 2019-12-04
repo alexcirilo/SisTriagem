@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
  * @author Alex
  */
 public class SisTelaLogin extends javax.swing.JFrame {
-
+    
     Connection connection = null;
     PreparedStatement stmt = null;
     ResultSet rs = null;
-
+    
     public void logar() {
         /*String sql = "select * from usuarios where login = ? and senha = ?";
         try {
@@ -45,15 +45,15 @@ public class SisTelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,e);
         }*/
         
-        if(txLogin.getText().equalsIgnoreCase("admin") && psSenha.getText().equals("admin")){
+        if (txLogin.getText().equalsIgnoreCase("admin") && psSenha.getText().equals("admin")) {
             SisTelaPrincipal main = new SisTelaPrincipal();
-                JOptionPane.showMessageDialog(null, "Login Efetuado com Sucesso! Bem vindo ");
-                main.setVisible(true);
-                dispose();
+            JOptionPane.showMessageDialog(null, "Login Efetuado com Sucesso! Bem vindo ");
+            main.setVisible(true);
+            dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuário e/ou senha Inválido(s)");
         }
-
+        
     }
 
     /**
@@ -66,8 +66,10 @@ public class SisTelaLogin extends javax.swing.JFrame {
         //System.out.println(conexao);
         if (connection != null) {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banco logado.png")));
+            
         } else {
             lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banco remove.png")));
+            
         }
     }
 
@@ -81,7 +83,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        jFotoLogin = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txLogin = new javax.swing.JTextField();
@@ -98,8 +100,8 @@ public class SisTelaLogin extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(700, 450));
 
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Lock_security.jpg"))); // NOI18N
+        jFotoLogin.setForeground(new java.awt.Color(255, 255, 255));
+        jFotoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Lock_security.jpg"))); // NOI18N
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Login:");
@@ -131,16 +133,17 @@ public class SisTelaLogin extends javax.swing.JFrame {
         });
 
         lblStatus.setForeground(new java.awt.Color(255, 255, 255));
+        lblStatus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/banco remove.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4)
+                .addComponent(jFotoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
+                        .addGap(43, 43, 43)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -155,7 +158,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
                                         .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
+                        .addGap(104, 104, 104)
                         .addComponent(lblStatus)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
@@ -180,7 +183,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
                 .addComponent(lblStatus)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFotoLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -240,6 +243,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new SisTelaLogin().setVisible(true);
             }
@@ -249,10 +253,10 @@ public class SisTelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JButton btSair;
+    private javax.swing.JLabel jFotoLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JPasswordField psSenha;

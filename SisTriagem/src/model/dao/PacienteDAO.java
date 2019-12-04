@@ -7,18 +7,18 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
-import model.bean.SisPessoa;
+import model.bean.SisPaciente;
 
-public class PessoaDAO {
+public class PacienteDAO {
     private final Connection connection;
     PreparedStatement stmt;
     ResultSet rs;
     
-    public PessoaDAO() {
+    public PacienteDAO() {
         this.connection = ConnectionFactory.getConnection();
     }
 
-    public void save(SisEndereco endereco, SisContato contato, SisPessoa pessoa) throws SQLException {
+    public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente) throws SQLException {
         int varEndId= 0, varCttId = 0;
         
         //EnderecoEContatoDAO end = new EnderecoEContatoDAO();
@@ -66,14 +66,16 @@ public class PessoaDAO {
         }
         
         try {
+            //varEndId = end.salvarEndereco(endereco);
+            //varCttId = end.salvarContato(contato);
             String sql = ("insert into sis_pessoa (nomePessoa,CPF,sexo,dataNascimento,endereco_id, contato_id)"
                     + "values(?,?,?,?,?,?)");
             
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, pessoa.getNomePessoa());
-            stmt.setString(2, pessoa.getCpf());
-            stmt.setString(3, pessoa.getSexo());
-            stmt.setString(4, pessoa.getDataNascimento());
+            stmt.setString(1, paciente.getNomePaciente());
+            stmt.setString(2, paciente.getCpf());
+            stmt.setString(3, paciente.getSexo());
+            stmt.setString(4, paciente.getDataNascimento());
             stmt.setInt(5, varEndId);
             stmt.setInt(6, varCttId);
             
