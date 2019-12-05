@@ -5,13 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Alex
  */
 public  class ConnectionFactory {
-    public static final String url = "jdbc:mysql://127.0.0.1:4306/sisTriagem";
+    public static final String url = "jdbc:mysql://127.0.0.1:3306/sisTriagem";
     public static final String user = "root";
     public static final String password = "qwe123";
     
@@ -28,9 +29,10 @@ public  class ConnectionFactory {
     
     public void executaSQL(String sql){
         try {
-            stmt =  (PreparedStatement) connection.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);
+            stmt = (PreparedStatement)connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sql);
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+            JOptionPane.showMessageDialog(null,"Erro executaSQL\n"+ ex);
         }
         
     }

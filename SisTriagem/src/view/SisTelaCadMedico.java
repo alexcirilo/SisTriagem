@@ -5,10 +5,19 @@
  */
 package view;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisMedico;
 import model.dao.MedicoDAO;
+
 
 
 /**
@@ -21,6 +30,40 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     SisEndereco end = new SisEndereco();
     SisContato ctt = new SisContato();
     
+    
+    
+    private void pesquisar_medico(){
+        
+        connection.ConnectionFactory.getConnection();
+        
+        
+        String sql = "select nomemedico from sis_medico where nomeMedico like ? ";
+        try {
+            PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
+            //passando o conteúdo da caixa de pesquisa para o ??
+            // atenção ao "% - continuação da string sql
+            
+            stmt.setString(1, "'%"+txPesquisar.getText() + "%'");
+            ResultSet rs = stmt.executeQuery();
+            //jTableMedico.setModel(DbUtils.resultSetToTableModel(rs));
+            while(rs.next()){
+                med.setId(rs.getInt("id"));
+                med.setNome(rs.getString("nomeMedico"));
+                
+                med.setEspecialidade(rs.getString("especialidade"));
+                med.setCRM(rs.getInt("CRM"));
+                med.setUF_CRM(rs.getString("ufCRM"));
+                
+                med.setNome(txNomeMed.getText());
+                med.setEspecialidade(jcbEspecialidade.getSelectedItem().toString());
+                med.setCRM(Integer.parseInt(txCRM.getText()));
+                med.setUF_CRM(jcbUFCRM.getSelectedItem().toString());
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
     
     
     /**
@@ -254,15 +297,13 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarMedicoActionPerformed
-        
+         
         med.setPesquisa(txPesquisar.getText());
         SisMedico model = mod.buscaMedico(med);
-        
         txNomeMed.setText(model.getNome());
-        txCRM.setText(String.valueOf(model.getCRM()));
         jcbEspecialidade.setSelectedItem(model.getEspecialidade());
-        btCadEditar.setEnabled(true);
-        btCadExcluir.setEnabled(true);
+        txCRM.setText(String.valueOf(model.getCRM()));
+        jcbUFCRM.setSelectedItem(model.getUF_CRM());
     }//GEN-LAST:event_btPesquisarMedicoActionPerformed
 
     private void btCadNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNovoActionPerformed
