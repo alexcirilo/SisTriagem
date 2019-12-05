@@ -18,24 +18,20 @@ import model.bean.SisEndereco;
 import model.bean.SisMedico;
 import model.dao.MedicoDAO;
 
-
-
 /**
  *
  * @author Alex
  */
 public class SisTelaCadMedico extends javax.swing.JFrame {
+
     MedicoDAO mod = new MedicoDAO();
     SisMedico med = new SisMedico();
     SisEndereco end = new SisEndereco();
     SisContato ctt = new SisContato();
     
-    
-    
-    private void pesquisar_medico(){
+    private void pesquisar_medico() {
         
         connection.ConnectionFactory.getConnection();
-        
         
         String sql = "select nomemedico from sis_medico where nomeMedico like ? ";
         try {
@@ -43,10 +39,10 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
             //passando o conteúdo da caixa de pesquisa para o ??
             // atenção ao "% - continuação da string sql
             
-            stmt.setString(1, "'%"+txPesquisar.getText() + "%'");
+            stmt.setString(1, "'%" + txPesquisar.getText() + "%'");
             ResultSet rs = stmt.executeQuery();
             //jTableMedico.setModel(DbUtils.resultSetToTableModel(rs));
-            while(rs.next()){
+            while (rs.next()) {
                 med.setId(rs.getInt("id"));
                 med.setNome(rs.getString("nomeMedico"));
                 
@@ -64,8 +60,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    
+
     /**
      * Creates new form SisTelaCadMedico
      */
@@ -289,24 +284,46 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        med.setNome(txNomeMed.getText());
-        med.setEspecialidade(jcbEspecialidade.getSelectedItem().toString());
-        med.setCRM(Integer.parseInt(txCRM.getText()));
-        med.setUF_CRM(jcbUFCRM.getSelectedItem().toString());
-        mod.salvarMedico(med);
+        if (!txNomeMed.equals(txNomeMed.getText().isEmpty()) && txCRM.equals(txCRM.getText() != null) && !jcbEspecialidade.equals(jcbEspecialidade.getSelectedItem()) && !jcbUFCRM.equals(jcbUFCRM.getSelectedItem())) {
+            med.setNome(txNomeMed.getText());
+            med.setEspecialidade(jcbEspecialidade.getSelectedItem().toString());
+            med.setCRM(Integer.parseInt(txCRM.getText()));
+            med.setUF_CRM(jcbUFCRM.getSelectedItem().toString());
+            mod.salvarMedico(med);
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha os Campos!!");
+        }
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarMedicoActionPerformed
-         
-        med.setPesquisa(txPesquisar.getText());
-        SisMedico model = mod.buscaMedico(med);
-        txNomeMed.setText(model.getNome());
-        jcbEspecialidade.setSelectedItem(model.getEspecialidade());
-        txCRM.setText(String.valueOf(model.getCRM()));
-        jcbUFCRM.setSelectedItem(model.getUF_CRM());
+        if (!txPesquisar.equals(txPesquisar.getText().isEmpty())) {
+            med.setPesquisa(txPesquisar.getText());
+            SisMedico model = mod.buscaMedico(med);
+            txNomeMed.setText(model.getNome());
+            jcbEspecialidade.setSelectedItem(model.getEspecialidade());
+            txCRM.setText(String.valueOf(model.getCRM()));
+            jcbUFCRM.setSelectedItem(model.getUF_CRM());
+            
+            if (model == model) {
+                btCadEditar.setEnabled(true);
+                btCadExcluir.setEnabled(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "not found");
+            }
+        }else{
+            txNomeMed.setText("");
+            txCRM.setText("");
+            jcbEspecialidade.setSelectedItem(0);
+            jcbUFCRM.setSelectedItem(0);
+        }
     }//GEN-LAST:event_btPesquisarMedicoActionPerformed
 
     private void btCadNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNovoActionPerformed
+        txNomeMed.setText("");
+        txCRM.setText("");
+        jcbEspecialidade.setSelectedItem(0);
+        jcbUFCRM.setSelectedItem(0);
+        
         btCadSalvar.setEnabled(true);
         btCadEditar.setEnabled(true);
         btCadExcluir.setEnabled(true);
