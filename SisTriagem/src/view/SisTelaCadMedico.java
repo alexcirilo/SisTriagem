@@ -321,6 +321,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     private void btCadNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadNovoActionPerformed
         txNomeMed.setText("");
         txCRM.setText("");
+        txPesquisar.setText("");
         jcbEspecialidade.setSelectedItem(0);
         jcbUFCRM.setSelectedItem(0);
         

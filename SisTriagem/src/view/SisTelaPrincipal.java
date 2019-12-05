@@ -147,6 +147,11 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         JmenuCadastro.add(CadMedico);
 
         CadUsuarios.setText("Usuários");
+        CadUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CadUsuariosActionPerformed(evt);
+            }
+        });
         JmenuCadastro.add(CadUsuarios);
 
         CadTriagem.setText("Triagem");
@@ -207,10 +212,10 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
 
     private void CadPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadPacienteActionPerformed
         // TODO add your handling code here:
-        SisTelaCad consulta = new SisTelaCad();
+        /*SisTelaCad consulta = new SisTelaCad();
         jDesktopPane1.add(consulta);
         consulta.setVisible(true);
-        
+        */
     }//GEN-LAST:event_CadPacienteActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -243,6 +248,12 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         SisTelaCadMedico tela = new SisTelaCadMedico();
         tela.setVisible(true);
     }//GEN-LAST:event_btCadMedicoActionPerformed
+
+    private void CadUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadUsuariosActionPerformed
+        SisTelaCadUsuario telaUser = new SisTelaCadUsuario();
+        telaUser.setVisible(true);
+        
+    }//GEN-LAST:event_CadUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
