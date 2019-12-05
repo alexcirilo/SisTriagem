@@ -20,7 +20,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
     ResultSet rs = null;
     
     public void logar() {
-        /*String sql = "select * from usuarios where login = ? and senha = ?";
+        String sql = "select * from sis_usuario where login = ? and senha = ?";
         try {
             // as linhas seguintes preparam a consulta ao banco em função do 
             // que foi digitado nas caixas de texto. O ? é substituído pelo 
@@ -43,8 +43,8 @@ public class SisTelaLogin extends javax.swing.JFrame {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
-        }*/
-        
+        }
+        /*
         if (txLogin.getText().equalsIgnoreCase("admin") && psSenha.getText().equals("admin")) {
             SisTelaPrincipal main = new SisTelaPrincipal();
             JOptionPane.showMessageDialog(null, "Login Efetuado com Sucesso! Bem vindo ");
@@ -52,7 +52,7 @@ public class SisTelaLogin extends javax.swing.JFrame {
             dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Usuário e/ou senha Inválido(s)");
-        }
+        }*/
         
     }
 

@@ -5,12 +5,17 @@
  */
 package view;
 
+import model.bean.SisUsuario;
+import model.dao.UsuarioDAO;
+
 /**
  *
  * @author Alex
  */
 public class SisTelaCadUsuario extends javax.swing.JFrame {
 
+    SisUsuario usuario = new SisUsuario();
+    UsuarioDAO user = new UsuarioDAO();
     /**
      * Creates new form SisTelaCadUsuario
      */
@@ -47,6 +52,11 @@ public class SisTelaCadUsuario extends javax.swing.JFrame {
         jLabel4.setText("Senha:");
 
         btUserSalvar.setText("Salvar");
+        btUserSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUserSalvarActionPerformed(evt);
+            }
+        });
 
         btUserCancelar.setText("Cancelar");
         btUserCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -130,6 +140,14 @@ public class SisTelaCadUsuario extends javax.swing.JFrame {
     private void btUserCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btUserCancelarActionPerformed
+
+    private void btUserSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUserSalvarActionPerformed
+        usuario.setNomeUsuario(txUserNome.getText());
+        usuario.setLogin(txUserLogin.getText());
+        usuario.setSenha(psUserSenha.getText());
+        user.salvarUsuario(usuario);
+        
+    }//GEN-LAST:event_btUserSalvarActionPerformed
 
     /**
      * @param args the command line arguments
