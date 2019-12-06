@@ -8,6 +8,15 @@ public class SisMedico {
     private int CRM;
     private String UF_CRM;
     private String pesquisa;
+    private String buscaMedico;
+
+    public String getBuscaMedico() {
+        return buscaMedico;
+    }
+
+    public void setBuscaMedico(String buscaMedico) {
+        this.buscaMedico = buscaMedico;
+    }
 
     public int getId() {
         return id;

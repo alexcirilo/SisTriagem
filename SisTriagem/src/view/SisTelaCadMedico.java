@@ -284,15 +284,15 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadCancelarActionPerformed
 
     private void btCadSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadSalvarActionPerformed
-        if (!txNomeMed.equals(txNomeMed.getText().isEmpty()) && txCRM.equals(txCRM.getText() != null) && !jcbEspecialidade.equals(jcbEspecialidade.getSelectedItem()) && !jcbUFCRM.equals(jcbUFCRM.getSelectedItem())) {
+        //if (txNomeMed.equals(txNomeMed.getText()!= null) && txCRM.equals(txCRM.getText() != null) && jcbEspecialidade.equals(jcbEspecialidade.getSelectedItem()) && jcbUFCRM.equals(jcbUFCRM.getSelectedItem())) {
             med.setNome(txNomeMed.getText());
             med.setEspecialidade(jcbEspecialidade.getSelectedItem().toString());
             med.setCRM(Integer.parseInt(txCRM.getText()));
             med.setUF_CRM(jcbUFCRM.getSelectedItem().toString());
             mod.salvarMedico(med);
-        } else {
-            JOptionPane.showMessageDialog(null, "Preencha os Campos!!");
-        }
+        //} else {
+          //  JOptionPane.showMessageDialog(null, "Preencha os Campos!!");
+        //}
     }//GEN-LAST:event_btCadSalvarActionPerformed
 
     private void btPesquisarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarMedicoActionPerformed

@@ -3,6 +3,7 @@ package model.bean;
 public class SisTipoConsulta {
 
     private int id;
+    private SisPaciente paciente_id;
     private SisMedico medico_id;
     private String nomeConsulta;
 
@@ -17,6 +18,14 @@ public class SisTipoConsulta {
         this.id = id;
     }
 
+    public SisPaciente getPaciente_id(){
+        return paciente_id;
+    }
+    
+    public void setPaciente_id (SisPaciente paciente_id){
+        this.paciente_id = paciente_id;
+    }
+    
     public SisMedico getMedico_id() {
         return medico_id;
     }

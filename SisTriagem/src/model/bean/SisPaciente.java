@@ -14,6 +14,16 @@ public class SisPaciente {
     private SisEndereco endereco_id ;
     private SisContato contato_id;    
     private SisTipoConsulta consulta_id;
+    private String buscaPaciente;
+
+    public String getBuscaPaciente() {
+        return buscaPaciente;
+    }
+
+    public void setBuscaPaciente(String buscaPaciente) {
+        this.buscaPaciente = buscaPaciente;
+    }
+    
 
     public int getId() {
         return id;
