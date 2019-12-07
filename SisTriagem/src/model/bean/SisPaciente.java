@@ -8,9 +8,7 @@ public class SisPaciente {
     private String sexo;
     private String dataNascimento;
     private String curso;
-    private String motivoTriagem;
-    private String capital;
-    private String vinculoParente;
+    private boolean capital;
     private SisEndereco endereco_id ;
     private SisContato contato_id;    
     private SisTipoConsulta consulta_id;
@@ -73,29 +71,16 @@ public class SisPaciente {
         this.curso = curso;
     }
 
-    public String getMotivoTriagem() {
-        return motivoTriagem;
-    }
-
-    public void setMotivoTriagem(String motivoTriagem) {
-        this.motivoTriagem = motivoTriagem;
-    }
-
-    public String getCapital() {
+    public boolean isCapital() {
         return capital;
     }
 
-    public void setCapital(String capital) {
+    public void setCapital(boolean capital) {
         this.capital = capital;
     }
 
-    public String getVinculoParente() {
-        return vinculoParente;
-    }
+    
 
-    public void setVinculoParente(String vinculoParente) {
-        this.vinculoParente = vinculoParente;
-    }
 
     public SisEndereco getEndereco_id() {
         return endereco_id;

@@ -68,7 +68,7 @@ public class PacienteDAO {
         try {
             //varEndId = end.salvarEndereco(endereco);
             //varCttId = end.salvarContato(contato);
-            String sql = ("insert into sis_pessoa (nomePessoa,CPF,sexo,dataNascimento,endereco_id, contato_id)"
+            String sql = ("insert into sis_paciente (nomePessoa,CPF,sexo,dataNascimento,curso,endereco_id, contato_id)"
                     + "values(?,?,?,?,?,?)");
             
             stmt = connection.prepareStatement(sql);

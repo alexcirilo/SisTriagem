@@ -305,14 +305,17 @@ public class SisTelaConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
         pac.setBuscaPaciente(buscaPaciente.getText());
         SisPaciente paciente = buscarPaciente(pac);
+        
         txTriagemPaciente.setText(paciente.getNomePaciente());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        med.setPesquisa(buscaMedico.getText());
+        med.setPesquisa(txTriagemMedico.getText());
         SisMedico medico = buscarMedico(med);
-        txTriagemMedico.setText(medico.getNome());
+        txTriagemMedico.setText(medico.getNome());    
+        
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
