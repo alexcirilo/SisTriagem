@@ -1,10 +1,11 @@
 package model.dao;
 
 import connection.ConnectionFactory;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import model.bean.SisMedico;
@@ -13,12 +14,16 @@ public class MedicoDAO {
     //private final Connection connection;
     //PreparedStatement stmt;
     ResultSet rs;
-    ConnectionFactory con = new ConnectionFactory();
+    PreparedStatement stmt;
+    //ConnectionFactory con = new ConnectionFactory();
     
     
     public void salvarMedico(SisMedico med){
+        if((!med.getNome().equals("")) ){
         try {
             connection.ConnectionFactory.getConnection();
+        
+            
         
             String sql = "insert into sis_medico(nomeMedico,especialidade,CRM,ufCRM) VALUES (?,?,?,?)";
             PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
@@ -31,6 +36,10 @@ public class MedicoDAO {
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos a Preencher");
+        }
+        
     }
 
     
@@ -56,7 +65,6 @@ public class MedicoDAO {
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Médico não encontrado.Tente Novamente!!");
-            
         }      
         
         }else {
@@ -66,4 +74,17 @@ public class MedicoDAO {
         }
         return med;
     }
+    
+    public void deletarMedico(SisMedico med){
+        connection.ConnectionFactory.getConnection();
+        String sql = "delete from sis_medico where nomeMedico = ?";
+        try {
+            PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
+            
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
 }

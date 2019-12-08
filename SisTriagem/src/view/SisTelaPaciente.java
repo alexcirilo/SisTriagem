@@ -69,6 +69,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Pacientes");
 
+        jPanel1.setBackground(new java.awt.Color(207, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -134,6 +135,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Cadastro de Pacientes");
 
+        jPanel2.setBackground(new java.awt.Color(207, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         try {
@@ -224,6 +226,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        jPanel3.setBackground(new java.awt.Color(207, 204, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel13.setText("Tipo:");
