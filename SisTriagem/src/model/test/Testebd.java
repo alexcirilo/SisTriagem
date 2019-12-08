@@ -30,7 +30,7 @@ public class Testebd {
         ctt.setTipoContato("cel");
         ctt.setDDD(91);
         ctt.setNumeroContato("98048-1111");
-        ctt.setCtt_principal(true);
+//        ctt.setCtt_principal(true);
 
         /*pes.setNomePessoa("Alex Carlos");
         pes.setCpf("017.069.382.17");

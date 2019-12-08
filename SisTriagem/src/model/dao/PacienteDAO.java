@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPaciente;
@@ -21,10 +22,8 @@ public class PacienteDAO {
     public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente) throws SQLException {
         int varEndId= 0, varCttId = 0;
         
-        //EnderecoEContatoDAO end = new EnderecoEContatoDAO();
-        
         try {
-            String sql = "insert into sis_endereco (cep,logradouro,numero,bairro,complemento,estado,pais)values(?,?,?,?,?,?,?)";
+            String sql = "insert into sis_endereco (cep,logradouro,numero,bairro,complemento,estado)values(?,?,?,?,?,?)";
              stmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, endereco.getCep());
             stmt.setString(2, endereco.getLogradouro());
@@ -32,7 +31,6 @@ public class PacienteDAO {
             stmt.setString(4, endereco.getBairro());
             stmt.setString(5, endereco.getComplemento());
             stmt.setString(6,endereco.getEstado());
-            stmt.setString(7, endereco.getPais());
             
             stmt.executeUpdate();
             
@@ -46,12 +44,11 @@ public class PacienteDAO {
             throw new RuntimeException(ex);
         }
         try {
-            String sql = "Insert into sis_contato(tipoContato,DDD,numero,principal) values (?,?,?,?)";
+            String sql = "Insert into sis_contato(tipoContato,DDD,numero) values (?,?,?)";
             stmt = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, contato.getTipoContato());
             stmt.setInt(2, contato.getDDD());
             stmt.setString(3, contato.getNumeroContato());
-            stmt.setBoolean(4, true);
             
             stmt.executeUpdate();
             
@@ -66,18 +63,18 @@ public class PacienteDAO {
         }
         
         try {
-            //varEndId = end.salvarEndereco(endereco);
-            //varCttId = end.salvarContato(contato);
+            
             String sql = ("insert into sis_paciente (nomePessoa,CPF,sexo,dataNascimento,curso,endereco_id, contato_id)"
-                    + "values(?,?,?,?,?,?)");
+                    + "values(?,?,?,?,?,?,?)");
             
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, paciente.getNomePaciente());
             stmt.setString(2, paciente.getCpf());
             stmt.setString(3, paciente.getSexo());
             stmt.setString(4, paciente.getDataNascimento());
-            stmt.setInt(5, varEndId);
-            stmt.setInt(6, varCttId);
+            stmt.setString(5,paciente.getCurso());
+            stmt.setInt(6, varEndId);
+            stmt.setInt(7, varCttId);
             
             stmt.execute();
             
