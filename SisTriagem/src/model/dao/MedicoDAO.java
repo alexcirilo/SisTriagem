@@ -23,8 +23,6 @@ public class MedicoDAO {
         try {
             connection.ConnectionFactory.getConnection();
         
-            
-        
             String sql = "insert into sis_medico(nomeMedico,especialidade,CRM,ufCRM) VALUES (?,?,?,?)";
             PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
             stmt.setString(1, med.getNome());
@@ -77,14 +75,7 @@ public class MedicoDAO {
     
     public void deletarMedico(SisMedico med){
         connection.ConnectionFactory.getConnection();
-        String sql = "delete from sis_medico where nomeMedico = ?";
-        try {
-            PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
-            
-            stmt.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(MedicoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
     
 }
