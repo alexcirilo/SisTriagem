@@ -1,26 +1,26 @@
 package model.dao;
+
 import connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javax.swing.JOptionPane;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPaciente;
 
 public class PacienteDAO {
+
     private final Connection connection;
     PreparedStatement stmt;
     ResultSet rs;
-    
+
     public PacienteDAO() {
         this.connection = ConnectionFactory.getConnection();
     }
-
-    public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente) throws SQLException {
-        int varEndId= 0, varCttId = 0;
+    public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente) {
+         int varEndId= 0, varCttId = 0;
         
         try {
             String sql = "insert into sis_endereco (cep,logradouro,numero,bairro,complemento,estado)values(?,?,?,?,?,?)";
@@ -77,9 +77,9 @@ public class PacienteDAO {
             stmt.setInt(7, varCttId);
             
             stmt.execute();
-            
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
+        
     }
 }

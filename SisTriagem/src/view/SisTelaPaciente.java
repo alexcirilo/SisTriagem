@@ -1,5 +1,7 @@
 package view;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import model.bean.SisContato;
@@ -12,15 +14,41 @@ import model.dao.PacienteDAO;
  * @author Alex
  */
 public class SisTelaPaciente extends javax.swing.JFrame {
+
     PacienteDAO dao = new PacienteDAO();
     SisPaciente pac = new SisPaciente();
     SisEndereco end = new SisEndereco();
-    SisContato  ctt = new SisContato();
-    
+    SisContato ctt = new SisContato();
+    PreparedStatement stmt;
+    ResultSet rs;
+
     public SisTelaPaciente() {
         initComponents();
     }
-    
+
+    public void validarNomeCPF( SisEndereco end, SisContato ctt, SisPaciente pac) {
+        String sql = "Select * from sis_paciente where nomePessoa = ? or cpf = ? ";
+        try {
+            
+            stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
+
+            stmt.setString(1,  txPacienteNome.getText());
+            stmt.setString(2, txFormPacienteCPF.getText());
+            
+            rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Existe Registro com este nome e/ou CPF");
+            }else{
+                dao.save(end, ctt, pac);
+                JOptionPane.showMessageDialog(null, "Paciente Cadastrado com Sucesso!");
+            }
+        }catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+            
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -328,11 +356,11 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         end.setNumero(txtNumero.getText());
         end.setComplemento(txtComplemento.getText());
         end.setEstado(jcbEstado.getSelectedItem().toString());
-        
+
         ctt.setTipoContato(jcbTipoContato.getSelectedItem().toString());
         ctt.setDDD(Integer.parseInt(txtDDD.getText()));
         ctt.setNumeroContato(txFormContatoNumero.getText());
-        
+
         pac.setNomePaciente(txPacienteNome.getText());
         pac.setCpf(txFormPacienteCPF.getText());
         pac.setSexo(jcbPacienteSexo.getSelectedItem().toString());
@@ -340,18 +368,12 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         String dia = txFormPacienteDtNasc.getText().substring(0, 2);
         String mes = txFormPacienteDtNasc.getText().substring(3, 5);
         String ano = txFormPacienteDtNasc.getText().substring(6);
-        String dtBanco = ano+"-"+mes+"-"+dia;
+        String dtBanco = ano + "-" + mes + "-" + dia;
         pac.setDataNascimento(dtBanco);
         pac.setCurso(txPacienteCurso.getText());
         
-        try {
+            validarNomeCPF( end, ctt, pac);
             
-            dao.save(end, ctt, pac);
-            JOptionPane.showMessageDialog(null, "Paciente Salvo com Sucesso");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Paciente não cadastrado \n"+ex);
-        }
-        
     }//GEN-LAST:event_btPacienteSalvarActionPerformed
 
     /**
