@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPaciente;
@@ -17,9 +18,9 @@ public class PacienteDAO {
     ResultSet rs;
 
     public PacienteDAO() {
-        this.connection = ConnectionFactory.getConnection();
+        connection = ConnectionFactory.getConnection();
     }
-    public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente) {
+    public void save(SisEndereco endereco, SisContato contato, SisPaciente paciente ) {
          int varEndId= 0, varCttId = 0;
         
         try {
@@ -81,5 +82,27 @@ public class PacienteDAO {
             throw new RuntimeException(ex);
         }
         
+    }
+    public void validarNomeCPF( SisEndereco end, SisContato ctt, SisPaciente pac) {
+        String sql = "Select * from sis_paciente where nomePessoa = ? or cpf = ? ";
+        try {
+            
+            stmt = connection.prepareStatement(sql);
+
+            stmt.setString(1,  pac.getNomePaciente());
+            stmt.setString(2, pac.getCpf());
+            
+            rs = stmt.executeQuery();
+            
+            if(rs.next()){
+                JOptionPane.showMessageDialog(null, "Existe Registro com este nome e/ou CPF");
+            }else{
+                save(end, ctt, pac);
+                JOptionPane.showMessageDialog(null, "Paciente Cadastrado com Sucesso!");
+            }
+        }catch (SQLException ex){
+            throw new RuntimeException(ex);
+        }
+            
     }
 }

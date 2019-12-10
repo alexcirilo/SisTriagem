@@ -26,7 +26,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         initComponents();
     }
 
-    public void validarNomeCPF( SisEndereco end, SisContato ctt, SisPaciente pac) {
+    /*public void validarNomeCPF( SisEndereco end, SisContato ctt, SisPaciente pac) {
         String sql = "Select * from sis_paciente where nomePessoa = ? or cpf = ? ";
         try {
             
@@ -47,7 +47,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
             throw new RuntimeException(ex);
         }
             
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -372,7 +372,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         pac.setDataNascimento(dtBanco);
         pac.setCurso(txPacienteCurso.getText());
         
-            validarNomeCPF( end, ctt, pac);
+            dao.validarNomeCPF(end, ctt, pac);
             
     }//GEN-LAST:event_btPacienteSalvarActionPerformed
 
