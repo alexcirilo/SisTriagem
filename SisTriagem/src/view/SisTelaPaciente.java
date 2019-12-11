@@ -2,8 +2,6 @@ package view;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JOptionPane;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisPaciente;
@@ -25,29 +23,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
     public SisTelaPaciente() {
         initComponents();
     }
-
-    /*public void validarNomeCPF( SisEndereco end, SisContato ctt, SisPaciente pac) {
-        String sql = "Select * from sis_paciente where nomePessoa = ? or cpf = ? ";
-        try {
-            
-            stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
-
-            stmt.setString(1,  txPacienteNome.getText());
-            stmt.setString(2, txFormPacienteCPF.getText());
-            
-            rs = stmt.executeQuery();
-            
-            if(rs.next()){
-                JOptionPane.showMessageDialog(null, "Existe Registro com este nome e/ou CPF");
-            }else{
-                dao.save(end, ctt, pac);
-                JOptionPane.showMessageDialog(null, "Paciente Cadastrado com Sucesso!");
-            }
-        }catch (SQLException ex){
-            throw new RuntimeException(ex);
-        }
-            
-    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,8 +64,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jcbTipoContato = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
-        txtDDD = new javax.swing.JTextField();
         txFormContatoNumero = new javax.swing.JFormattedTextField();
         jLabel15 = new javax.swing.JLabel();
         btPacienteCancelar = new javax.swing.JButton();
@@ -120,11 +93,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         jPanel1.add(jcheckPacienteCapital, new org.netbeans.lib.awtextra.AbsoluteConstraints(228, 121, -1, -1));
 
         jcbPacienteSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Masc", "Fem", "Outr" }));
-        jcbPacienteSexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbPacienteSexoActionPerformed(evt);
-            }
-        });
         jPanel1.add(jcbPacienteSexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 71, -1, -1));
         jPanel1.add(txPacienteCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 125, 152, -1));
 
@@ -196,7 +164,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
                                     .addComponent(txtLogradouro)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(txtBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 61, Short.MAX_VALUE)))
+                                        .addGap(0, 67, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -256,10 +224,8 @@ public class SisTelaPaciente extends javax.swing.JFrame {
 
         jcbTipoContato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fixo", "Celular" }));
 
-        jLabel14.setText("DDD:");
-
         try {
-            txFormContatoNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####-####")));
+            txFormContatoNumero.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -272,20 +238,14 @@ public class SisTelaPaciente extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTipoContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
+                .addComponent(jLabel13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbTipoContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txFormContatoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -296,11 +256,7 @@ public class SisTelaPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel15)
                     .addComponent(jcbTipoContato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txFormContatoNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(txtDDD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         btPacienteCancelar.setText("Cancelar");
@@ -329,7 +285,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btPacienteSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -354,19 +309,14 @@ public class SisTelaPaciente extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btPacienteCancelar)
                     .addComponent(btPacienteSalvar))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbPacienteSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbPacienteSexoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbPacienteSexoActionPerformed
-
     private void btPacienteCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPacienteCancelarActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btPacienteCancelarActionPerformed
 
@@ -379,21 +329,26 @@ public class SisTelaPaciente extends javax.swing.JFrame {
         end.setEstado(jcbEstado.getSelectedItem().toString());
 
         ctt.setTipoContato(jcbTipoContato.getSelectedItem().toString());
-        ctt.setDDD(Integer.parseInt(txtDDD.getText()));
         ctt.setNumeroContato(txFormContatoNumero.getText());
 
         pac.setNomePaciente(txPacienteNome.getText());
         pac.setCpf(txFormPacienteCPF.getText());
         pac.setSexo(jcbPacienteSexo.getSelectedItem().toString());
-        //pac.setDataNascimento(txFormPacienteDtNasc.getText());
+        
         String dia = txFormPacienteDtNasc.getText().substring(0, 2);
         String mes = txFormPacienteDtNasc.getText().substring(3, 5);
         String ano = txFormPacienteDtNasc.getText().substring(6);
         String dtBanco = ano + "-" + mes + "-" + dia;
         pac.setDataNascimento(dtBanco);
         pac.setCurso(txPacienteCurso.getText());
-        
+        if(jcheckPacienteCapital.isSelected()){
+            pac.setCapital(true);
+        }else{
+            pac.setCapital(false);
+        }
             dao.validarNomeCPF(end, ctt, pac);
+            
+            
             
     }//GEN-LAST:event_btPacienteSalvarActionPerformed
 
@@ -442,7 +397,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -468,7 +422,6 @@ public class SisTelaPaciente extends javax.swing.JFrame {
     private javax.swing.JTextField txPacienteNome;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtComplemento;
-    private javax.swing.JTextField txtDDD;
     private javax.swing.JTextField txtLogradouro;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables

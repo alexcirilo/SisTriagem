@@ -81,7 +81,6 @@ public class SisPaciente {
 
     
 
-
     public SisEndereco getEndereco_id() {
         return endereco_id;
     }

@@ -6,6 +6,8 @@ public class SisTipoConsulta {
     private SisPaciente paciente_id;
     private SisMedico medico_id;
     private String nomeConsulta;
+    private String CID;
+    private String horario;
 
     public SisTipoConsulta() {
     }
@@ -40,6 +42,22 @@ public class SisTipoConsulta {
 
     public void setNomeConsulta(String nomeConsulta) {
         this.nomeConsulta = nomeConsulta;
+    }
+
+    public String getCID() {
+        return CID;
+    }
+
+    public void setCID(String CID) {
+        this.CID = CID;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
     }
     
 }

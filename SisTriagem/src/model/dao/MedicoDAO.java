@@ -31,6 +31,7 @@ public class MedicoDAO {
             stmt.setString(4, med.getUF_CRM());
             
             stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Médico Salvo com Sucesso!");
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }

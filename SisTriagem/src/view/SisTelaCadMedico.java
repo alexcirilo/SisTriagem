@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
-//import net.proteanit.sql.DbUtils;
+import net.proteanit.sql.DbUtils;
 import model.bean.SisContato;
 import model.bean.SisEndereco;
 import model.bean.SisMedico;
@@ -41,7 +41,7 @@ public class SisTelaCadMedico extends javax.swing.JFrame {
             stmt.setString(1, "%" + txPesquisar.getText() + "%");
             rs = stmt.executeQuery();
 
-            //jTableMedico.setModel(DbUtils.resultSetToTableModel(rs));
+            jTableMedico.setModel(DbUtils.resultSetToTableModel(rs));
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Médico não encontrado.Tente Novamente!!");
