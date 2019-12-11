@@ -43,13 +43,14 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         JmenuCadastro = new javax.swing.JMenu();
         CadPaciente = new javax.swing.JMenuItem();
         CadMedico = new javax.swing.JMenuItem();
         CadUsuarios = new javax.swing.JMenuItem();
-        CadTriagem = new javax.swing.JMenuItem();
         jMenuConsulta = new javax.swing.JMenu();
         miMarcarConsulta = new javax.swing.JMenuItem();
         miPesquisarConsulta = new javax.swing.JMenuItem();
@@ -77,9 +78,9 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         jPanelInternalFrame.setLayout(null);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Cadastros - ");
+        jLabel2.setText("Cadastros:");
         jPanelInternalFrame.add(jLabel2);
-        jLabel2.setBounds(50, 10, 70, 20);
+        jLabel2.setBounds(10, 10, 70, 20);
 
         jLabelInternalFrame.setBackground(new java.awt.Color(0, 0, 0));
         jLabelInternalFrame.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -112,12 +113,12 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
 
         jLabel3.setText("Agenda:");
         jPanelInternalFrame.add(jLabel3);
-        jLabel3.setBounds(230, 10, 50, 20);
+        jLabel3.setBounds(310, 10, 50, 20);
 
         jButtonAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Agenda.png"))); // NOI18N
         jButtonAgenda.setToolTipText("Agendamento");
         jPanelInternalFrame.add(jButtonAgenda);
-        jButtonAgenda.setBounds(220, 40, 60, 60);
+        jButtonAgenda.setBounds(430, 40, 60, 60);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -138,7 +139,21 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
 
         jLabel6.setText("Consulta");
         jPanelInternalFrame.add(jLabel6);
-        jLabel6.setBounds(230, 110, 50, 14);
+        jLabel6.setBounds(440, 110, 50, 14);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/icon-infermeira.png"))); // NOI18N
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelInternalFrame.add(jButton1);
+        jButton1.setBounds(310, 40, 60, 60);
+
+        jLabel7.setText("Agendamento");
+        jPanelInternalFrame.add(jLabel7);
+        jLabel7.setBounds(310, 110, 90, 14);
 
         jInternalFrameBemVindo.getContentPane().add(jPanelInternalFrame);
         jPanelInternalFrame.setBounds(0, 41, 1000, 430);
@@ -178,14 +193,16 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         });
         JmenuCadastro.add(CadUsuarios);
 
-        CadTriagem.setText("Triagem");
-        JmenuCadastro.add(CadTriagem);
-
         jMenuBar1.add(JmenuCadastro);
 
         jMenuConsulta.setText("Consultas");
 
         miMarcarConsulta.setText("Marcar Consulta");
+        miMarcarConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miMarcarConsultaActionPerformed(evt);
+            }
+        });
         jMenuConsulta.add(miMarcarConsulta);
 
         miPesquisarConsulta.setText("Pesquisar Consultas");
@@ -223,7 +240,7 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -282,6 +299,18 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         TelaPaciente.setVisible(true);
     }//GEN-LAST:event_btCadPacienteActionPerformed
 
+    private void miMarcarConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miMarcarConsultaActionPerformed
+        // TODO add your handling code here:
+        SisTelaConsulta consulta = new SisTelaConsulta();
+        consulta.setVisible(true);
+    }//GEN-LAST:event_miMarcarConsultaActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        SisTelaConsulta telaConsulta = new SisTelaConsulta();
+        telaConsulta.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,11 +349,11 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem CadMedico;
     private javax.swing.JMenuItem CadPaciente;
-    private javax.swing.JMenuItem CadTriagem;
     private javax.swing.JMenuItem CadUsuarios;
     private javax.swing.JMenu JmenuCadastro;
     private javax.swing.JButton btCadMedico;
     private javax.swing.JButton btCadPaciente;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonAgenda;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -335,6 +364,7 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelInternalFrame;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsulta;
