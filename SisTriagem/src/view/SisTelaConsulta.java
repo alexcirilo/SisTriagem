@@ -21,7 +21,7 @@ public class SisTelaConsulta extends javax.swing.JFrame {
     SisTipoConsulta cons = new SisTipoConsulta();
     
     public SisPaciente buscarPaciente(SisPaciente pac){
-        String sql = "select id,nomePessoa from sis_paciente where nomePessoa like '%"+pac.getNomePaciente()+"%' ";
+        String sql = "select id,nomePessoa from sis_paciente where nomePessoa like '%"+txPesqPaciente.getText()+"%' ";
         try {
             PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
             
@@ -38,7 +38,7 @@ public class SisTelaConsulta extends javax.swing.JFrame {
         return pac;
     }
     public SisMedico buscarMedico (SisMedico med){
-        String sql = "select id,nomeMedico from sis_medico where nomeMedico like '%"+med.getNome()+"%' ";
+        String sql = "select id,nomeMedico from sis_medico where nomeMedico like '%"+txPesqMedico.getText()+"%' ";
         try {
             PreparedStatement stmt = connection.ConnectionFactory.getConnection().prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
@@ -214,6 +214,11 @@ public class SisTelaConsulta extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        txPesqPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPesqPacienteActionPerformed(evt);
+            }
+        });
         txPesqPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txPesqPacienteKeyReleased(evt);
@@ -440,6 +445,10 @@ public class SisTelaConsulta extends javax.swing.JFrame {
         salvarTriagem(pac, med, cons);
 
     }//GEN-LAST:event_btTriagemSalvarActionPerformed
+
+    private void txPesqPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesqPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txPesqPacienteActionPerformed
 
     /**
      * @param args the command line arguments

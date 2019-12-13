@@ -117,6 +117,11 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
 
         jButtonAgenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Agenda.png"))); // NOI18N
         jButtonAgenda.setToolTipText("Agendamento");
+        jButtonAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgendaActionPerformed(evt);
+            }
+        });
         jPanelInternalFrame.add(jButtonAgenda);
         jButtonAgenda.setBounds(430, 40, 60, 60);
 
@@ -310,6 +315,12 @@ public class SisTelaPrincipal extends javax.swing.JFrame {
         SisTelaConsulta telaConsulta = new SisTelaConsulta();
         telaConsulta.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgendaActionPerformed
+    
+        SisTelaConsultaAgendada ca = new SisTelaConsultaAgendada();
+        ca.setVisible(true);
+    }//GEN-LAST:event_jButtonAgendaActionPerformed
 
     /**
      * @param args the command line arguments

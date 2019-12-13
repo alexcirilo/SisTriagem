@@ -98,7 +98,6 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
         txSelectConsulta = new javax.swing.JTextField();
         txSelectMedico = new javax.swing.JTextField();
         txSelectHorario = new javax.swing.JTextField();
-        btFinalizarAgendamento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -125,6 +124,11 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTableConsulta);
 
+        txPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txPacienteActionPerformed(evt);
+            }
+        });
         txPaciente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txPacienteKeyReleased(evt);
@@ -165,8 +169,6 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
             }
         });
 
-        btFinalizarAgendamento.setText("Finalizar");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -201,8 +203,6 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
                         .addComponent(txSelectMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txSelectHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btFinalizarAgendamento)
                         .addGap(15, 15, 15)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
@@ -223,14 +223,13 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
                     .addComponent(txFormHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txSelectPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txSelectConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txSelectMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txSelectHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btFinalizarAgendamento))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(txSelectHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -262,42 +261,46 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(7, 7, 7))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txPacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txPacienteKeyReleased
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        pesquisar_consulta();
-    }//GEN-LAST:event_txPacienteKeyReleased
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txConsultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txConsultaKeyReleased
+    private void txFormHorarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txFormHorarioKeyReleased
         // TODO add your handling code here:
         pesquisar_consulta();
-    }//GEN-LAST:event_txConsultaKeyReleased
+    }//GEN-LAST:event_txFormHorarioKeyReleased
 
     private void txMedicoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txMedicoKeyReleased
         // TODO add your handling code here:
         pesquisar_consulta();
     }//GEN-LAST:event_txMedicoKeyReleased
 
-    private void txFormHorarioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txFormHorarioKeyReleased
+    private void txConsultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txConsultaKeyReleased
         // TODO add your handling code here:
         pesquisar_consulta();
-    }//GEN-LAST:event_txFormHorarioKeyReleased
+    }//GEN-LAST:event_txConsultaKeyReleased
+
+    private void txPacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txPacienteKeyReleased
+        // TODO add your handling code here:
+        pesquisar_consulta();
+    }//GEN-LAST:event_txPacienteKeyReleased
 
     private void jTableConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableConsultaMouseClicked
         try {
@@ -309,10 +312,9 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableConsultaMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void txPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPacienteActionPerformed
         // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_txPacienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -350,7 +352,6 @@ public class SisTelaConsultaAgendada extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btFinalizarAgendamento;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

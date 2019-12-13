@@ -42,20 +42,19 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="21" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="23" max="32767" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,8 +107,6 @@
                           <Component id="txSelectMedico" min="-2" pref="139" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="txSelectHorario" min="-2" pref="139" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btFinalizarAgendamento" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -136,15 +133,14 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jScrollPane2" min="-2" pref="217" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txSelectPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txSelectConsulta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txSelectMedico" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txSelectHorario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btFinalizarAgendamento" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="49" max="32767" attributes="0"/>
+                  <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -208,6 +204,7 @@
         </Container>
         <Component class="javax.swing.JTextField" name="txPaciente">
           <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txPacienteActionPerformed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txPacienteKeyReleased"/>
           </Events>
         </Component>
@@ -269,11 +266,6 @@
         <Component class="javax.swing.JTextField" name="txSelectMedico">
         </Component>
         <Component class="javax.swing.JTextField" name="txSelectHorario">
-        </Component>
-        <Component class="javax.swing.JButton" name="btFinalizarAgendamento">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Finalizar"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
